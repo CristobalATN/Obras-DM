@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaración de Obras Dramáticas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="https://atn.cl" target="_blank"><img src="ObrasAV-mainTEST/assets/Logo-Fondo-Transparente@3x(1).png"
+                alt="Logo ATN" class="logo"></a>
+        <h1>Declaración de Obras Dramáticas</h1>
+    </header>
+
+    <main>
+        <form id="dramatic-form" autocomplete="off">
+
+            <!-- SECCIÓN 1: Títulos de la Obra -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-theater-masks"></i> Títulos de la Obra</h2>
+                </div>
+                <div class="section-content">
+                    <div class="form-group required">
+                        <label for="titulo-obra">
+                            <i class="fas fa-heading"></i> Título de la obra
+                        </label>
+                        <input type="text" id="titulo-obra" name="titulo-obra" class="form-control"
+                            placeholder="Título con el que se presenta la obra al espectador" maxlength="300" required>
+                        <div class="input-hint">Máximo 300 caracteres</div>
+                        <div class="error-message">Este campo es obligatorio</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="titulo-original">
+                            <i class="fas fa-book"></i> Título original
+                        </label>
+                        <input type="text" id="titulo-original" name="titulo-original" class="form-control"
+                            placeholder="Título original si la obra proviene de otra fuente">
+                        <div class="input-hint">Opcional - Ej: si es adaptación de un libro</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otro-titulo">
+                            <i class="fas fa-globe"></i> Otro título
+                        </label>
+                        <input type="text" id="otro-titulo" name="otro-titulo" class="form-control"
+                            placeholder="Título en exhibiciones internacionales u otros contextos">
+                        <div class="input-hint">Opcional</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: Características de la Obra -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-info-circle"></i> Características de la Obra</h2>
+                </div>
+                <div class="section-content">
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="genero-obra">
+                                <i class="fas fa-tag"></i> Género de la obra
+                            </label>
+                            <select id="genero-obra" name="genero-obra" class="form-control select2" required>
+                                <option value="">Seleccione un género</option>
+                                <!-- Options will be loaded from JSON -->
+                            </select>
+                            <div class="error-message">Debe seleccionar un género</div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="duracion-obra">
+                                <i class="fas fa-clock"></i> Duración de la obra
+                            </label>
+                            <div class="input-with-unit">
+                                <input type="number" id="duracion-obra" name="duracion-obra" class="form-control"
+                                    min="1" max="999" placeholder="0" required>
+                                <span class="unit-label">minutos</span>
+                            </div>
+                            <div class="error-message">Ingrese una duración entre 1 y 999 minutos</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="numero-actos">
+                                <i class="fas fa-list-ol"></i> Número de actos
+                            </label>
+                            <input type="number" id="numero-actos" name="numero-actos" class="form-control" min="1"
+                                max="99" placeholder="0" required>
+                            <div class="error-message">Ingrese un número entre 1 y 99</div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="duracion-musica">
+                                <i class="fas fa-music"></i> Duración de la música
+                            </label>
+                            <div class="input-with-unit">
+                                <input type="number" id="duracion-musica" name="duracion-musica" class="form-control"
+                                    min="0" max="999" placeholder="0" required>
+                                <span class="unit-label">minutos</span>
+                            </div>
+                            <div class="error-message">Ingrese una duración entre 0 y 999 minutos</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="duracion-texto">
+                                <i class="fas fa-align-left"></i> Duración del texto
+                            </label>
+                            <div class="input-with-unit">
+                                <input type="number" id="duracion-texto" name="duracion-texto" class="form-control"
+                                    min="0" max="999" placeholder="0" required>
+                                <span class="unit-label">minutos</span>
+                            </div>
+                            <div class="error-message">Ingrese una duración entre 0 y 999 minutos</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: Información de Estreno y Propiedad Intelectual -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-star"></i> Información de Estreno y Propiedad Intelectual</h2>
+                </div>
+                <div class="section-content">
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="fecha-estreno">
+                                <i class="fas fa-calendar-day"></i> Fecha de estreno de la obra o publicación
+                            </label>
+                            <input type="date" id="fecha-estreno" name="fecha-estreno" class="form-control" required>
+                            <div class="error-message">Este campo es obligatorio</div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="lugar-estreno">
+                                <i class="fas fa-map-marker-alt"></i> Lugar de estreno
+                            </label>
+                            <input type="text" id="lugar-estreno" name="lugar-estreno" class="form-control"
+                                placeholder="Ciudad, país o teatro" maxlength="200" required>
+                            <div class="input-hint">Máximo 200 caracteres</div>
+                            <div class="error-message">Este campo es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3><i class="fas fa-certificate"></i> Inscripción en Propiedad Intelectual (DIBAM)</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="numero-inscripcion">
+                                    <i class="fas fa-hashtag"></i> Nº de inscripción
+                                </label>
+                                <input type="number" id="numero-inscripcion" name="numero-inscripcion"
+                                    class="form-control" placeholder="Número de inscripción" max="9999999999">
+                                <div class="input-hint">Opcional - Máximo 10 dígitos</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha-inscripcion">
+                                    <i class="fas fa-calendar-check"></i> Fecha de inscripción
+                                </label>
+                                <input type="date" id="fecha-inscripcion" name="fecha-inscripcion" class="form-control">
+                                <div class="input-hint">Opcional</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: Participaciones -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Participaciones</h2>
+                </div>
+                <div class="section-content">
+                    <div class="tabla-participaciones-container">
+                        <table class="tabla-participaciones">
+                            <thead>
+                                <tr>
+                                    <th>Clase</th>
+                                    <th>Autor</th>
+                                    <th>% Participación</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="participaciones-tbody">
+                                <!-- Rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-outline-success btn-agregar-participacion">
+                        <i class="fas fa-plus"></i> Agregar participación
+                    </button>
+                    <div id="participacion-resumen" class="participacion-resumen"></div>
+                    <div id="participaciones-error" class="form-message error-message"></div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: Firma -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-signature"></i> Firma</h2>
+                </div>
+                <div class="section-content">
+                    <div class="form-group required">
+                        <label for="firma-file">
+                            <i class="fas fa-file-image"></i> Firma (Imagen)
+                        </label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="firma-file" name="firma" accept=".png,.jpg,.jpeg" class="file-input"
+                                required>
+                            <label for="firma-file" class="file-input-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span class="file-text">Seleccionar archivo de firma</span>
+                                <span class="file-formats">Formatos permitidos: PNG, JPG, JPEG (Máx. 5MB)</span>
+                            </label>
+                        </div>
+                        <div class="file-preview" id="firma-preview" style="display:none;">
+                            <div class="preview-image-container">
+                                <img id="firma-image" src="" alt="Vista previa de la firma">
+                                <button type="button" class="btn-remove-file">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="file-info">
+                                <span class="file-name" id="firma-filename"></span>
+                                <span class="file-size" id="firma-filesize"></span>
+                            </div>
+                        </div>
+                        <div class="error-message">Debe adjuntar una imagen de firma</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lugar-especifico">
+                            <i class="fas fa-map-marker-alt"></i> Lugar específico
+                        </label>
+                        <input type="text" id="lugar-especifico" name="lugar-especifico" class="form-control"
+                            placeholder="Ingrese un lugar específico (opcional)">
+                        <div class="input-hint">Opcional</div>
+                    </div>
+
+                    <div class="form-group required" id="captcha-group">
+                        <label>
+                            <i class="fas fa-shield-alt"></i> Verificación
+                        </label>
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAACK5fWQZ_AhccL6s"
+                            data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
+                        <div class="error-message">Debe completar la verificación</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Button -->
+            <div class="form-buttons">
+                <button type="submit" id="submit-btn" class="btn btn-success">
+                    <i class="fas fa-paper-plane"></i> Enviar Declaración
+                </button>
+            </div>
+
+            <!-- Form Message -->
+            <div id="form-message" class="form-message"></div>
+        </form>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner-institucional">
+                <svg width="50" height="50" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="#097137" stroke-width="4" stroke-linecap="round"
+                        stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                        <animate attributeName="stroke-dashoffset" dur="1.5s" values="31.416;0;31.416"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            </div>
+            <p>Enviando declaración...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="modalExito" class="modal-atn" style="display:none;">
+        <div class="modal-atn-content">
+            <div class="modal-atn-header-green">
+                <h3><i class="fas fa-check-circle"></i> Declaración Enviada</h3>
+            </div>
+            <div class="modal-atn-message">
+                <p>Su declaración de obra dramática ha sido enviada exitosamente.</p>
+            </div>
+            <div class="modal-atn-buttons">
+                <button type="button" id="modalExitoOk" class="btn btn-success">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="modalError" class="modal-atn" style="display:none;">
+        <div class="modal-atn-content">
+            <div class="modal-atn-header-red">
+                <h3><i class="fas fa-exclamation-triangle"></i> Error al Enviar</h3>
+            </div>
+            <div class="modal-atn-message">
+                <p id="error-message-text">Ha ocurrido un error al enviar la declaración. Por favor, intente nuevamente.
+                </p>
+            </div>
+            <div class="modal-atn-buttons">
+                <button type="button" id="modalErrorRetry" class="btn btn-primary">Reintentar</button>
+                <button type="button" id="modalErrorClose" class="btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
