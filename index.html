@@ -153,15 +153,15 @@
                     </div>
 
                     <div class="subsection">
-                        <h3><i class="fas fa-certificate"></i> Inscripción en Propiedad Intelectual (DIBAM)</h3>
+                        <h3><i class="fas fa-certificate"></i> Inscripción en Propiedad Intelectual (DIBAM) | <i>completar si es que está inscrita</i></h3>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="numero-inscripcion">
                                     <i class="fas fa-hashtag"></i> Nº de inscripción
                                 </label>
                                 <input type="number" id="numero-inscripcion" name="numero-inscripcion"
-                                    class="form-control" placeholder="Número de inscripción" max="9999999999">
-                                <div class="input-hint">Opcional - Máximo 10 dígitos</div>
+                                    class="form-control" placeholder="Número de inscripción">
+                                <div class="input-hint">Opcional</div>
                             </div>
 
                             <div class="form-group">
@@ -201,23 +201,92 @@
                         <i class="fas fa-plus"></i> Agregar participación
                     </button>
                     <div id="participacion-resumen" class="participacion-resumen"></div>
+                    <div class="participacion-notificacion" id="participacion-notificacion">
+                        <h4>Participantes y correos</h4>
+                        <div id="alerta-correos-faltantes" class="alerta-correos-faltantes" style="display: none;"></div>
+                        <ul class="lista-participantes-notificacion"></ul>
+                    </div>
                     <div id="participaciones-error" class="form-message error-message"></div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 5: Firma -->
+            <!-- SECCIÓN 5: Validaciones -->
             <section class="form-section">
                 <div class="section-header">
-                    <h2><i class="fas fa-signature"></i> Firma</h2>
+                    <h2><i class="fas fa-user-check"></i> Validaciones</h2>
                 </div>
                 <div class="section-content">
-                    <div class="form-group required">
+                    <div class="document-preview-card" id="documento-preview">
+                        <div class="document-preview-header">
+                            <div class="document-preview-title">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Documento que se rellenará automáticamente</span>
+                            </div>
+                            <a class="btn btn-outline-success" href="docs/DeclaracionDM.pdf" target="_blank" rel="noopener">
+                                <i class="fas fa-up-right-from-square"></i> Abrir
+                            </a>
+                        </div>
+                        <div class="document-preview-text">
+                            El siguiente documento será completado con los datos ingresados en este formulario y también será enviado al correo que indiques a continuación.
+                        </div>
+                        <iframe class="document-preview-iframe" src="docs/DeclaracionDM.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Vista previa del documento"></iframe>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="declarante-nombre">
+                                <i class="fas fa-user"></i> Nombre Completo
+                            </label>
+                            <input type="text" id="declarante-nombre" name="declarante-nombre" class="form-control"
+                                placeholder="Ingresa tu nombre completo" required>
+                            <div class="input-hint">Nombre y apellidos como aparecen en tu cédula de identidad</div>
+                            <div class="error-message">Este campo es obligatorio</div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="declarante-rut">
+                                <i class="fas fa-id-card"></i> RUT
+                            </label>
+                            <input type="text" id="declarante-rut" name="declarante-rut" class="form-control"
+                                placeholder="12.345.678-9" maxlength="12" required>
+                            <div class="input-hint">Formato: 12.345.678-9 (con puntos y guión)</div>
+                            <div class="error-message">RUT inválido. Verifique el formato y dígito verificador.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="declarante-correo">
+                                <i class="fas fa-envelope"></i> Correo Electrónico
+                            </label>
+                            <input type="email" id="declarante-correo" name="declarante-correo" class="form-control"
+                                placeholder="ejemplo@correo.com" required>
+                            <div class="input-hint">Se enviará confirmación a este correo</div>
+                            <div class="error-message">Correo electrónico inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="firma-file">
                             <i class="fas fa-file-image"></i> Firma (Imagen)
                         </label>
+                        <div class="firma-info-grid">
+                            <div class="firma-info-item">
+                                <div class="firma-info-header">
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Importante</strong>
+                                </div>
+                                <p>Tu firma solo será utilizada para incluirla en la ficha de declaración de obra dramática y <strong>no se almacenará ni usará para ningún otro fin</strong>. Esto permitirá simplificar y finalizar el proceso de declaración ya que no se requerirá ninguna otra acción por parte tuya.</p>
+                            </div>
+                            <div class="firma-info-item">
+                                <div class="firma-info-header">
+                                    <i class="fas fa-question-circle"></i>
+                                    <strong>¿Qué ocurre si no sube su firma?</strong>
+                                </div>
+                                <p>Si decides <strong>no subir tu firma</strong>, igualmente se generará automáticamente la ficha de declaración de obra dramática con todos los datos ingresados en el formulario <strong>excepto la firma</strong>. Lo recibirás por correo electrónico una vez finalizada la declaración pero para hacerla efectiva <strong>deberás firmarlo manualmente</strong> y responder al correo adjuntando el documento firmado.</p>
+                            </div>
+                        </div>
                         <div class="file-input-wrapper">
-                            <input type="file" id="firma-file" name="firma" accept=".png,.jpg,.jpeg" class="file-input"
-                                required>
+                            <input type="file" id="firma-file" name="firma" accept=".png,.jpg,.jpeg" class="file-input">
                             <label for="firma-file" class="file-input-label">
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <span class="file-text">Seleccionar archivo de firma</span>
@@ -236,7 +305,6 @@
                                 <span class="file-size" id="firma-filesize"></span>
                             </div>
                         </div>
-                        <div class="error-message">Debe adjuntar una imagen de firma</div>
                     </div>
 
                     <div class="form-group">
@@ -258,6 +326,28 @@
                     </div>
                 </div>
             </section>
+
+            <div class="form-group">
+                <label for="observaciones-alcance">
+                    <i class="fas fa-comment-dots"></i> Observaciones o alcance
+                </label>
+                <textarea id="observaciones-alcance" name="observaciones-alcance" class="form-control" rows="4"
+                    placeholder="Indique si tiene observaciones con respecto al proceso, este campo es opcional."></textarea>
+                <div class="input-hint">Opcional</div>
+            </div>
+
+            <div class="declaration-checkbox-section">
+                <div class="form-group required" id="declaracion-veracidad-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="declaracion-veracidad" name="declaracion-veracidad" required>
+                        <label for="declaracion-veracidad">
+                            El(los) firmante(s) declara(n) que los datos consignados en esta ficha son ciertos y
+                            correctos y se responsabiliza(n) ante terceros de la exactitud de lo aquí declarado.
+                        </label>
+                    </div>
+                    <div class="error-message">Debe aceptar la declaración de veracidad.</div>
+                </div>
+            </div>
 
             <!-- Submit Button -->
             <div class="form-buttons">
@@ -284,6 +374,22 @@
                 </svg>
             </div>
             <p>Enviando declaración...</p>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="modalConfirm" class="modal-atn" style="display:none;">
+        <div class="modal-atn-content">
+            <div class="modal-atn-header-green">
+                <h3><i class="fas fa-question-circle"></i> Confirmar Envío</h3>
+            </div>
+            <div class="modal-atn-message">
+                <p>¿Está seguro de los datos antes de enviar la declaración?</p>
+            </div>
+            <div class="modal-atn-buttons">
+                <button type="button" id="modalConfirmYes" class="btn btn-success">Sí</button>
+                <button type="button" id="modalConfirmNo" class="btn btn-secondary">No, necesito volver</button>
+            </div>
         </div>
     </div>
 
@@ -326,3 +432,5 @@
 </body>
 
 </html>
+
+
