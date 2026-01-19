@@ -968,7 +968,8 @@ async function submitToPowerAutomate(data) {
     $('#loadingOverlay').hide();
 
     if (response.ok) {
-      showSuccessModal();
+      resetForm();
+      window.location.replace('exito.html');
     } else {
       const errorText = await response.text();
       showErrorModal('Error del servidor: ' + errorText);
@@ -1067,3 +1068,4 @@ $(document).on('keypress', 'input:not(textarea)', function (e) {
     return false;
   }
 });
+
